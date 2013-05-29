@@ -25,7 +25,7 @@ let s:pairs = [
 let s:pairs = exists('g:rbpt_colorpairs') ? g:rbpt_colorpairs : s:pairs
 let s:max = exists('g:rbpt_max') ? g:rbpt_max : max([len(s:pairs), 16])
 let s:loadtgl = exists('g:rbpt_loadcmd_toggle') ? g:rbpt_loadcmd_toggle : 0
-let s:types = [['(',')'],['\[','\]'],['{','}'],['<','>']]
+let s:types = [['(',')'],['\[','\]'],['{','}'],['<','>'],['{% \(if\|for\|block\) .\{-} %}','{% end %}']]
 
 func! s:extend()
 	if s:max > len(s:pairs)
@@ -83,7 +83,7 @@ func! rainbow_parentheses#load(...)
 	let [level, grp, type] = ['', '', s:types[a:1]]
 	let alllvls = map(range(1, s:max), '"level".v:val')
 	if !exists('b:loaded')
-		let b:loaded = [0,0,0,0]
+		let b:loaded = [0,0,0,0,0]
 	endif
 	let b:loaded[a:1] = s:loadtgl && b:loaded[a:1] ? 0 : 1
 	for each in range(1, s:max)
